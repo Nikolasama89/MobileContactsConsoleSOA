@@ -38,7 +38,7 @@ public class MobileContactController {
             readOnlyDTO = Mapper.mapMobileContactToDTO(mobileContact);
             return "OK\n" + Serializer.serializeDTO(readOnlyDTO);
         } catch (PhoneNumberAlreadyExistsException e) {
-            return "Error\n" + e.getMessage() + "\n";
+            return "Error.\n" + e.getMessage() + "\n";
         }
     }
 
@@ -58,7 +58,7 @@ public class MobileContactController {
             readOnlyDTO = Mapper.mapMobileContactToDTO(mobileContact);
             return "OK\n" + Serializer.serializeDTO(readOnlyDTO);
         } catch (PhoneNumberAlreadyExistsException | ContactNotFoundException e) {
-            return "Error\n" + e.getMessage() + "\n";
+            return "Error.\n" + e.getMessage() + "\n";
         }
     }
 
@@ -67,7 +67,7 @@ public class MobileContactController {
             service.deleteContactById(id);
             return "OK\n Contact Deleted";
         } catch (ContactNotFoundException e) {
-            return "Error\n Error at delete. Contact not found!";
+            return "Error.\n Error at delete. Contact not found!";
         }
     }
 
@@ -77,7 +77,7 @@ public class MobileContactController {
         try {
             mobileContact = service.getContactById(id);
             readOnlyDTO = Mapper.mapMobileContactToDTO(mobileContact);
-            return "OK \n" + Serializer.serializeDTO(readOnlyDTO);
+            return "OK\n" + Serializer.serializeDTO(readOnlyDTO);
         } catch (ContactNotFoundException e) {
             return "Error.\n Contact Not Found!";
         }
@@ -104,7 +104,7 @@ public class MobileContactController {
         try {
             mobileContact = service.getContactByPhoneNumber(phoneNumber);
             readOnlyDTO = Mapper.mapMobileContactToDTO(mobileContact);
-            return "OK \n" + Serializer.serializeDTO(readOnlyDTO);
+            return "OK\n" + Serializer.serializeDTO(readOnlyDTO);
         } catch (ContactNotFoundException e) {
             return "Error.\n Contact Not Found!";
         }
@@ -120,7 +120,7 @@ public class MobileContactController {
 
             return "OK\n Contact Deleted" + Serializer.serializeDTO(readOnlyDTO);
         } catch (ContactNotFoundException e) {
-            return "Error\n Error at delete. Contact not found!";
+            return "Error.\n Error at delete. Contact not found!";
         }
     }
 }
