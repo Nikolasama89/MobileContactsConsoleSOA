@@ -11,6 +11,6 @@ public class Serializer {
      */
     public static String serializeDTO(MobileContactReadOnlyDTO readOnlyDTO) {
         return "ID:" + readOnlyDTO.getId() + ", Name:" + readOnlyDTO.getFirstname()
-                + ", LastName:" + readOnlyDTO.getLastname() + ", Phone number:" + readOnlyDTO.getPhoneNumber();
+                + ", LastName:" + readOnlyDTO.getLastname() + ", Phone number: " + readOnlyDTO.getPhoneNumber();
     }
 }

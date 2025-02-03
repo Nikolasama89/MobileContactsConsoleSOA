@@ -29,7 +29,7 @@ public class MobileContactServiceImpl implements IMobileContactService{
             }
             mobileContact = Mapper.mapInsertDTOToContact(dto);
 
-            System.err.printf("MobileContactServiceImpl Logger: %s was insert.", mobileContact);
+            System.err.printf("MobileContactServiceImpl Logger: %s inserted. \n", mobileContact);
             return dao.insert(mobileContact);
         } catch (PhoneNumberAlreadyExistsException e) {
             System.err.printf("MobileContactServiceImpl Logger: contact with phone number: %s already exists.", dto.getPhoneNumber());
@@ -56,7 +56,7 @@ public class MobileContactServiceImpl implements IMobileContactService{
             }
 
             newContact = Mapper.mapUpdateDTOToContact(dto);
-            System.err.printf("MobileContactServiceImpl Logger: %s was updated with new info %s", mobileContact, newContact);
+            System.err.printf("MobileContactServiceImpl Logger: %s was updated with new info %s\n", mobileContact, newContact);
             return dao.update(dto.getId(), newContact);
         } catch (ContactNotFoundException | PhoneNumberAlreadyExistsException e) {
             System.err.println(e.getMessage());

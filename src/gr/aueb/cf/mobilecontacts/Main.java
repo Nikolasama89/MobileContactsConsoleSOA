@@ -2,6 +2,9 @@ package gr.aueb.cf.mobilecontacts;
 
 import gr.aueb.cf.mobilecontacts.controller.MobileContactController;
 import gr.aueb.cf.mobilecontacts.dto.MobileContactInsertDTO;
+import gr.aueb.cf.mobilecontacts.dto.MobileContactReadOnlyDTO;
+import gr.aueb.cf.mobilecontacts.dto.MobileContactUpdateDTO;
+import gr.aueb.cf.mobilecontacts.exceptions.ContactNotFoundException;
 
 import java.util.Scanner;
 
@@ -51,10 +54,41 @@ public class Main {
                 }
                 break;
             case "2":
-                //
+                System.out.println("Please insert contact ID to update:");
+                Long id;
+                try {
+                    id = Long.parseLong(getToken());
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid ID. Try again");
+                    throw e;
+                }
+                System.out.println("Please insert new Name, Last Name and phone number.");
+                firstname = getToken();
+                lastname = getToken();
+                phoneNumber = getToken();
+                MobileContactUpdateDTO updateDTO = new MobileContactUpdateDTO(id, firstname, lastname, phoneNumber);
+                response = controller.updateContact(updateDTO);
+
+                if (response.startsWith("OK")) {
+                    System.out.println("Successful update!");
+                    System.out.println(response.substring(3));
+                } else {
+                    System.out.println("Unsuccessful Update");
+                    System.out.println(response.substring(7));
+                }
                 break;
             case "3":
-                //
+                System.out.println("Please Select a Contact to delete: ");
+                Long contactId = Long.parseLong(getToken());
+                response = controller.deleteContactById(contactId);
+
+                if (response.startsWith("OK")) {
+                    System.out.println("Contact Deleted.");
+                } else {
+                    System.out.println("Unsuccessful Delete");
+                    System.out.println(response.substring(7));
+                }
+
                 break;
             case "4":
                 //

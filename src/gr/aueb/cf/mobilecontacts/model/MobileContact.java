@@ -44,7 +44,7 @@ public class MobileContact extends AbstractEntity {
 
     @Override
     public String toString() {
-        return "Firstname: " + firstname + ", Lastname: " + lastname + ", Phone Number" + phoneNumber;
+        return "Firstname: " + firstname + ", Lastname: " + lastname + ", Phone Number: " + phoneNumber;
     }
 
     @Override
