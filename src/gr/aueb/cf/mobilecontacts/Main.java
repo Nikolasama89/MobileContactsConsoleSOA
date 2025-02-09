@@ -6,6 +6,7 @@ import gr.aueb.cf.mobilecontacts.dto.MobileContactReadOnlyDTO;
 import gr.aueb.cf.mobilecontacts.dto.MobileContactUpdateDTO;
 import gr.aueb.cf.mobilecontacts.exceptions.ContactNotFoundException;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -83,23 +84,35 @@ public class Main {
                 response = controller.deleteContactById(contactId);
 
                 if (response.startsWith("OK")) {
-                    System.out.println("Contact Deleted.");
+                    System.out.println(response.substring(3));
                 } else {
                     System.out.println("Unsuccessful Delete");
                     System.out.println(response.substring(7));
                 }
-
                 break;
             case "4":
-                //
+                System.out.println("Search for contact Id");
+                id = Long.parseLong(getToken());
+                response = controller.getContactById(id);
+                if (response.startsWith("OK")) {
+                    System.out.println("Successful Search!");
+                    System.out.println(response.substring(3));
+                } else {
+                    System.out.println("Unsuccessful Search");
+                    System.out.println(response.substring(7));
+                }
                 break;
             case "5":
-                //
+                List<String> mobileContacts = controller.getAllContacts();
+                if (mobileContacts.isEmpty()) {
+                    System.out.println("Contact List is empty!");
+                } else {
+                    mobileContacts.forEach(System.out::println);
+                }
                 break;
             default:
-                //
+                System.out.println("Wrong Choice");
                 break;
-
         }
     }
 
